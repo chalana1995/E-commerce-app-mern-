@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userRoute = require("./routes/user");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const app = express();
 require("dotenv").config();
 
@@ -13,6 +16,10 @@ mongoose.connect(process.env.DATABASE).then(() => {
 app.get("/", (req, res) => {
   res.send("hello from node");
 });
+
+app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use("/api", userRoute);
 
