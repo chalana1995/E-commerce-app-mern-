@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
 
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api", userRoute);
