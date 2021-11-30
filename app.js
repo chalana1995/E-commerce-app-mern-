@@ -4,6 +4,7 @@ const userRoute = require("./routes/user");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const expressValidator = require("express-validator");
 const app = express();
 require("dotenv").config();
 
@@ -21,6 +22,7 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(expressValidator());
 
 app.use("/api", userRoute);
 
