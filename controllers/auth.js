@@ -55,3 +55,21 @@ exports.requireSignin = expressJwt({
   userProperty: "auth",
   algorithms: ["RS256"],
 });
+
+exports.isAuth = (req, res, next) => {
+  let user = req.profile && req.auth && req.profile._id == req.auth._id;
+  if (!user) {
+    res.status(403).json({
+      error: "Access Denined",
+    });
+  }
+  next();
+};
+
+exports.isAdmin = (req, res, next) => {
+  if (req.profile.admin === 0) {
+    return res.status(403).json({
+      error: "Admin Resource Access Denied",
+    });
+  }
+};
