@@ -8,9 +8,6 @@ exports.create = (req, res) => {
   const form = new formidable.IncomingForm();
   form.keepExtension = true;
   form.parse(req, (err, fields, files) => {
-    console.log("fields", fields);
-    console.log("files", files);
-
     if (err) {
       return res.status(400).json({
         error: "Image could not be uploded",
