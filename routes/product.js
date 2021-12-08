@@ -9,6 +9,7 @@ const {
   update,
   list,
   listRelated,
+  listCategories,
 } = require("../controllers/product");
 const { userById } = require("../controllers/user");
 const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
@@ -18,6 +19,7 @@ router.post("/product/create/:userId", requireSignin, isAdmin, create);
 router.delete("/product/:productId/:userId", requireSignin, isAdmin, remove);
 router.put("/product/:productId/:userId", requireSignin, isAdmin, update);
 router.get("/products", list);
+router.get("/products/categories", listCategories);
 router.get("/products/related/:productId", listRelated);
 
 router.param("userId", userById);
