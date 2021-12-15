@@ -27,7 +27,7 @@ exports.signin = (req, res) => {
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        err: "User with that emaildoes not exit. Please Sign up",
+        err: "User with that email does not exit. Please Sign up",
       });
     }
 
